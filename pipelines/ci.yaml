@@ -11,9 +11,9 @@ resources:
       endpoint: 'launchbynttdata-github-token'
 
 stages:
-- stage: CI-Pre-Check
+- stage: ci_pre_check
   jobs:
-  - job: CI-Pre-Check
+  - job: ci_pre_check_job
     displayName: 'Lint, Build and Test'
     pool: 'container-pool'
     steps:
