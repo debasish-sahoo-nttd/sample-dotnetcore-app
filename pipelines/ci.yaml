@@ -1,3 +1,14 @@
+pr:
+  - main
+
+resources:
+  repositories:
+    # You do not have to checkout this repo to use the templates
+    - repository: utils
+      type: github
+      name: 'launchbynttdata/lcaf-component-provider_az-pipeline_azdo'
+      ref: feature/1456
+      endpoint: 'launchbynttdata-github-token'
 
 stages:
 - stage: CI-Pre-Check
@@ -6,26 +17,31 @@ stages:
     displayName: 'Lint, Build and Test'
     pool: 'container-pool'
     steps:
+    - template: /iac/steps/verify-ado-agent.yaml@utils
     - task: DotNetCoreCLI@2
       displayName: 'Restore NuGet packages'
+      enabled: false
       inputs:
         command: restore
         projects: '**/*.csproj'
         
     - task: DotNetCoreCLI@2
       displayName: 'Run linting'
+      enabled: false
       inputs:
         command: custom
         custom: 'dotnet lint'
         
     - task: DotNetCoreCLI@2
       displayName: 'Run tests'
+      enabled: false
       inputs:
         command: test
         projects: '**/*Tests.csproj'
         
     - task: Docker@2
       displayName: 'Build Docker image'
+      enabled: false
       inputs:
         command: build
         containerRegistry: 'yourContainerRegistryConnection'
