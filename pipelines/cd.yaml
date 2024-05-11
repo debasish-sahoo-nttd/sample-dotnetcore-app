@@ -83,6 +83,7 @@ stages:
         - environment: 'dev'
           dependsOn: 'BuildAndPush'
           azureEnvironment: aks-${{ parameters.helmReleaseName }}-dev
+          variableFile: '/envs/dev/pipelines/variables.yaml@self'
           namespace: 'dev'
           releaseName: ${{ parameters.helmReleaseName }}
           acrName: ${{ parameters.acrName }}

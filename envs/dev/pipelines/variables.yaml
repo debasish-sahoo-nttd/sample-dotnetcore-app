@@ -1,0 +1,11 @@
+variables: 
+  - name: serviceConnection
+    value: 'ado-sp'
+  - name: agentPool
+    value: 'container-pool'
+  - name: acrName
+    value: 'dsopublic.azurecr.io'
+  - name: aksCluster
+    value: 'dso-ado-k8s-dev-001-aks'
+  - name: aksResourceGroup
+    value: 'dso-k8s-001'
