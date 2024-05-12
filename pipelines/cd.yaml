@@ -4,6 +4,8 @@ trigger:
     include:
       - main
 
+pr: none
+
 resources:
   repositories:
     # You do not have to checkout this repo to use the templates
