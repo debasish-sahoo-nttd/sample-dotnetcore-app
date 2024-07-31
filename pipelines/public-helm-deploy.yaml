@@ -44,13 +44,11 @@ resources:
 stages:
   - template: /applications/stages/public-helm-chart-app-deploy.yaml@utils
     parameters:
-      agentPool: ${{ parameters.agentPool }}
       deployEnvironments:
         - environment: 'dev'
           variableFile: '/envs/dev/pipelines/variables-2.yaml@self'
           region: eastus
           environmentNumber: "000"
-          imageTag: ${{ parameters.imageTag }}
           aksAdEnabled: True
           azureEnvironment: 'aks-nginx-ingress-dev-000-TBD'
           overrideValuesFile: 'envs/dev/helm/private-ingress-values.yaml'
