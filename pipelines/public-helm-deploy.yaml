@@ -1,0 +1,56 @@
+
+trigger:
+  branches:
+    include:
+      - feature/test-public-helm-chart
+
+resources:
+  repositories:
+    # You do not have to checkout this repo to use the templates
+    - repository: utils
+      type: github
+      name: 'launchbynttdata/lcaf-component-provider_az-pipeline_azdo'
+      ref: patch/update-public-chart
+      endpoint: 'launchbynttdata-github-token'
+
+# variables:
+#   # This is how you set variables for the repositories
+#   utils_name: $[ resources.repositories.utils.name ]
+#   # Variables for service connection. You cannot dynamically set them in tasks
+#   service_connection_uat: "ado-sp"
+#   service_connection_test: "ado-sp"
+#   service_connection_prod: "ado-sp"
+#   service_connection_dev: "ado-sp"
+
+# parameters:
+#   # serviceConnection may be different for each environment in real-world scenarios
+#   - name: serviceConnection
+#     type: string
+#     default: 'ado-sp'
+#   - name: agentPool
+#     type: string
+#     default: 'container-pool'
+#   - name: acrName
+#     type: string
+#     default: 'dsopublic.azurecr.io'
+#   - name: dockerImageName
+#     type: string
+#     default: 'sample-dotnetcore-app'
+#   # If imageTag is set to "None", the build ID will be used as the image tag
+#   - name: imageTag
+#     type: string
+#     default: "None"
+  
+stages:
+  - template: /applications/stages/public-helm-chart-app-deploy.yaml@utils
+    parameters:
+      agentPool: ${{ parameters.agentPool }}
+      deployEnvironments:
+        - environment: 'dev'
+          variableFile: '/envs/dev/pipelines/variables-2.yaml@self'
+          region: eastus
+          environmentNumber: "000"
+          imageTag: ${{ parameters.imageTag }}
+          aksAdEnabled: True
+          azureEnvironment: 'aks-nginx-ingress-dev-000-TBD'
+          overrideValuesFile: 'envs/dev/helm/private-ingress-values.yaml'
