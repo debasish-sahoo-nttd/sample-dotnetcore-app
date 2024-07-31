@@ -23,3 +23,5 @@ variables:
     value: 'dev'
   - name: keyVaultName
     value: 'dso-test-kv-001'
+  - name: secretFields
+    value: 'otel.connectionString:connection-string,otel.password:password'
