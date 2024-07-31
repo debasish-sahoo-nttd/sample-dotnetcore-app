@@ -25,3 +25,5 @@ variables:
     value: 'dso-test-kv-001'
   - name: secretFields
     value: 'otel.connectionString:connection-string,otel.password:password'
+  - name: additionalFields
+    value: ""
