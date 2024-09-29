@@ -1,0 +1,10 @@
+controller:
+  ingressClass: private-ingress
+  ingressClassResource:
+    controllerValue: k8s.io/private-ingress-nginx
+    name: private-ingress
+  replicaCount: 1
+  service:
+    annotations:
+      service.beta.kubernetes.io/azure-load-balancer-health-probe-request-path: /healthz
+      service.beta.kubernetes.io/azure-load-balancer-internal: true

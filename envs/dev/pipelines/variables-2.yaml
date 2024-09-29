@@ -1,0 +1,29 @@
+variables: 
+  - name: serviceConnection
+    value: 'ado-sp'
+  - name: agentPool
+    value: 'container-pool'
+  - name: aksCluster
+    value: 'dso-ado-k8s-dev-001-aks'
+  - name: aksResourceGroup
+    value: 'dso-k8s-001'
+  - name: helmChartRepoUrl
+    value: 'https://kubernetes.github.io/ingress-nginx'
+  - name: helmRepoName
+    value: ingress-nginx
+  - name: helmChartName
+    value: 'ingress-nginx'
+  - name: helmChartVersion
+    value: '4.10.0'
+  - name: helmReleaseName
+    value: 'private-ingress-nginx'
+  - name: namespace
+    value: 'private-ingress'
+  - name: deployEnvironment
+    value: 'dev'
+  - name: keyVaultName
+    value: 'dso-test-kv-001'
+  - name: secretFields
+    value: 'otel.connectionString:connection-string,otel.password:password'
+  - name: additionalFields
+    value: ""
